@@ -13,6 +13,18 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+$router->group(['prefix' => 'clientes'], function () use ($router) {
+    $router->get('/', 'ClienteController@index');
+    $router->post('/', 'ClienteController@store');
+    $router->get('/{id}', 'ClienteController@show');
+    $router->put('/{id}', 'ClienteController@update');
+    $router->delete('/{id}', 'ClienteController@destroy');
+});
+
+$router->group(['prefix' => 'ventas'], function () use ($router) {
+    $router->get('/', 'VentaController@index');
+    $router->post('/', 'VentaController@store');
+    $router->get('/{id}', 'VentaController@show');
+    $router->put('/{id}', 'VentaController@update');
+    $router->delete('/{id}', 'VentaController@destroy');
 });

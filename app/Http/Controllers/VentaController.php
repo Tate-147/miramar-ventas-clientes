@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Venta;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
@@ -69,7 +70,7 @@ class VentaController extends Controller
             // 2. Crear el registro principal de la venta
             $venta = Venta::create([
                 'cliente_id' => $request->cliente_id,
-                'fecha' => now(), // Usamos la fecha actual del servidor
+                'fecha' => Carbon::now(), // Usamos la fecha actual del servidor
                 'medio_pago' => $request->medio_pago,
                 'costo_total' => $costoTotalVenta
             ]);

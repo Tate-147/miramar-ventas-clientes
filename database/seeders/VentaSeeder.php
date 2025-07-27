@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Cliente;
 use App\Models\Venta;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
@@ -55,7 +56,7 @@ class VentaSeeder extends Seeder
 
                 $venta = Venta::create([
                     'cliente_id' => $cliente->id,
-                    'fecha' => now(),
+                    'fecha' => Carbon::now(),
                     'medio_pago' => 'Transferencia Bancaria (Seeder)',
                     'costo_total' => $costoTotalVenta
                 ]);

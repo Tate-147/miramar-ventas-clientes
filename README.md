@@ -26,7 +26,7 @@ Este es el segundo microservicio de negocio del sistema. Sus responsabilidades p
 
 1.  **Clonar el repositorio**
     ```bash
-    git clone [https://github.com/Tate-147/miramar-ventas-clientes.git](https://github.com/Tate-147/miramar-ventas-clientes.git)
+    git clone https://github.com/Tate-147/miramar-ventas-clientes.git
     cd miramar-ventas-clientes
     ```
 

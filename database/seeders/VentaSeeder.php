@@ -17,7 +17,7 @@ class VentaSeeder extends Seeder
         DB::table('ventas')->delete();
 
         $productosServiceUrl = 'http://localhost:8001';
-        $cliente = Cliente::first(); // Obtenemos el cliente que creamos antes
+        $cliente = Cliente::first(); // Trae el primer Cliente
 
         if (!$cliente) {
             $this->command->error('No se encontraron clientes. Ejecuta ClienteSeeder primero.');

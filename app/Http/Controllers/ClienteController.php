@@ -68,7 +68,7 @@ class ClienteController extends Controller
         }
 
         try {
-            // Al validar, ignoramos el DNI y email del propio cliente para evitar falsos positivos
+            // Al validar, se ignora el DNI y email del propio cliente para evitar falsos positivos
             $this->validate($request, [
                 'nombre' => 'sometimes|required|string|max:255',
                 'apellido' => 'sometimes|required|string|max:255',

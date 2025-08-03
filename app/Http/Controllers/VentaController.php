@@ -18,7 +18,7 @@ class VentaController extends Controller
      */
     public function index()
     {
-        // Usamos 'with' para cargar las relaciones y evitar consultas N+1
+        // Con el 'with' se cargan las relaciones y evita consultas N+1
         $ventas = Venta::with(['cliente', 'detalles'])->orderBy('fecha', 'desc')->get();
         return response()->json($ventas);
     }
@@ -29,8 +29,8 @@ class VentaController extends Controller
      */
     public function store(Request $request)
     {
-        // URL base del microservicio de productos. Idealmente se configura en .env
-        $productosServiceUrl = 'http://localhost:8001'; // El puerto que definimos para miramar-productos
+        // URL base del microservicio de productos.
+        $productosServiceUrl = 'http://localhost:8001'; // El puerto de miramar-productos
 
         try {
             $this->validate($request, [
@@ -70,7 +70,7 @@ class VentaController extends Controller
             // 2. Crear el registro principal de la venta
             $venta = Venta::create([
                 'cliente_id' => $request->cliente_id,
-                'fecha' => Carbon::now(), // Usamos la fecha actual del servidor
+                'fecha' => Carbon::now(), // Fecha actual del servidor
                 'medio_pago' => $request->medio_pago,
                 'costo_total' => $costoTotalVenta
             ]);
@@ -112,11 +112,8 @@ class VentaController extends Controller
 
     /**
      * Actualiza una venta.
-     * NOTA: La actualización de items de una venta es una operación compleja.
-     * En un sistema real, a menudo se prefiere cancelar y crear una nueva venta.
-     * Este método es una implementación simplificada que actualiza el medio de pago.
-     * La lógica para actualizar items se omite por simplicidad, pero se requeriría
-     * una lógica similar a la del método store.
+     * PUT /ventas/{id}
+     * Nota: Solo se puede actualizar el medio de pago.
      */
     public function update(Request $request, $id)
     {
@@ -152,7 +149,7 @@ class VentaController extends Controller
             return response()->json(['message' => 'Venta no encontrada'], 404);
         }
 
-        // Gracias a onDelete('cascade') en la migración, los detalles se borran automáticamente.
+        // Con onDelete('cascade') en la migración, los detalles se borran automáticamente.
         $venta->delete();
 
         return response()->json(null, 204); // No Content

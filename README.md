@@ -79,6 +79,7 @@ Para iniciar el servidor de desarrollo, ejecuta el siguiente comando. Se recomie
 
 ```bash
 php -S localhost:8002 -t public
+```
 
 ---
 
